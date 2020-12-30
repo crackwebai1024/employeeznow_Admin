@@ -13,12 +13,15 @@ import { Redirect } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
-    height: "100%",
+    height: "calc(100vh - 130px)",
     paddingBottom: theme.spacing(3),
     paddingTop: theme.spacing(3),
   },
+  formWrapper: {
+    paddingTop: "4rem",
+  },
   form: {
-    maxWidth: "700px",
+    maxWidth: "500px",
     width: "100%",
     margin: "auto",
   },
@@ -45,6 +48,7 @@ function LoginView(props) {
         flexDirection="column"
         height="100%"
         justifyContent="center"
+        className={classes.formWrapper}
       >
         <form onSubmit={(e) => e.preventDefault()} className={classes.form}>
           <TextField

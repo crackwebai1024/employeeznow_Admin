@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Link as RouterLink } from "react-router-dom";
 import clsx from "clsx";
 import PropTypes from "prop-types";
@@ -14,6 +15,8 @@ import {
 import MenuIcon from "@material-ui/icons/Menu";
 import NotificationsIcon from "@material-ui/icons/NotificationsOutlined";
 import InputIcon from "@material-ui/icons/Input";
+import { actions } from "@redux/auth";
+import { useDispatch } from "react-redux";
 import Logo from "../../components/Logo";
 
 const useStyles = makeStyles(() => ({
@@ -34,6 +37,11 @@ const useStyles = makeStyles(() => ({
 const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
   const classes = useStyles();
   const [notifications] = useState([]);
+  const dispatch = useDispatch();
+
+  const logOut = () => {
+    dispatch(actions.logOut());
+  };
 
   return (
     <AppBar className={clsx(classes.root, className)} elevation={0} {...rest}>
@@ -52,7 +60,7 @@ const TopBar = ({ className, onMobileNavOpen, ...rest }) => {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton color="inherit">
+          <IconButton color="inherit" onClick={logOut}>
             <InputIcon />
           </IconButton>
           <span className={classes.f18}>Sign Out</span>

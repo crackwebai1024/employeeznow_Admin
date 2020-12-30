@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Box, Container, makeStyles } from "@material-ui/core";
 import Page from "@components/Page";
+import { actions } from "@redux/employees";
 import Results from "./Results";
-// import Toolbar from "./Toolbar";
-import data from "./data";
+import Toolbar from "./Toolbar";
+import { useDispatch, useSelector } from "react-redux";
+// import data from "./data";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,14 +18,23 @@ const useStyles = makeStyles((theme) => ({
 
 const CustomerListView = () => {
   const classes = useStyles();
-  const [customers] = useState(data);
+  const dispatch = useDispatch();
+  const { employees, page, count } = useSelector((state) => state.employees);
+
+  useEffect(() => {
+    const filterData = {
+      page: page,
+      count: count,
+    };
+    dispatch(actions.getEmployees(filterData));
+  }, [page, count, dispatch]);
 
   return (
     <Page className={classes.root} title="Customers">
       <Container maxWidth={false}>
-        {/* <Toolbar /> */}
+        <Toolbar />
         <Box mt={3}>
-          <Results customers={customers} />
+          <Results customers={employees} />
         </Box>
       </Container>
     </Page>

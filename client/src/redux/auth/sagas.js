@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import * as AuthAPI from "@services/AuthAPI";
-import { setToken } from "@helpers/auth-helpers";
+import { setToken, removeToken } from "@helpers/auth-helpers";
 import { actions as types } from "./index";
 
 function* onLoginRequest({ payload }) {
@@ -13,6 +13,14 @@ function* onLoginRequest({ payload }) {
   } catch {}
 }
 
-const authSagas = [takeEvery(types.loginRequest, onLoginRequest)];
+function* onLogOut() {
+  yield removeToken();
+  window.location.pathname = "/login";
+}
+
+const authSagas = [
+  takeEvery(types.loginRequest, onLoginRequest),
+  takeEvery(types.logOut, onLogOut),
+];
 
 export default authSagas;

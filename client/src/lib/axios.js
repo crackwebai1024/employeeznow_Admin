@@ -20,6 +20,7 @@ axiosApiInstance.interceptors.request.use(async (config) => {
       Authorization: `Bearer ${token}`,
       Accept: "application.json",
       "Content-Type": "application/json",
+      "access-key": signature,
     };
   return config;
 });

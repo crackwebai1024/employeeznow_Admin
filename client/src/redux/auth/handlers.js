@@ -11,4 +11,8 @@ export const loginSuccess = (state) => ({
   isAuthenticated: true,
 });
 
+export const logOut = (state) => ({
+  ...state,
+});
+
 export default initialState;

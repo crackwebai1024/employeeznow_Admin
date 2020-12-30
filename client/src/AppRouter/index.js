@@ -16,13 +16,16 @@ export default function AppRouter() {
           <Route path="/" component={MainLayout}></Route>
           <Route path="/login" component={LoginView}></Route>
           <Route path="*">
-            <Redirect to="login" />
+            <Redirect to="/login" />
           </Route>
         </Fragment>
       ) : (
         <Fragment>
           <Route path="/app" component={DashboardLayout}></Route>
           <Route path="/app/employees" component={Employee}></Route>
+          <Route path="*">
+            <Redirect to="/app/employees"></Redirect>
+          </Route>
         </Fragment>
       )}
     </Fragment>
