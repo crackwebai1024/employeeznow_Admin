@@ -1,6 +1,24 @@
 import extend from "lodash/extend";
 import errorHandler from "../../helpers/dbErrorHandler";
 
+const readByPage = async (Model, req, res) => {
+  try {
+    console.log("I am here");
+    const { page, count } = req.query;
+    const start = (page - 1) * count;
+    console.log(start, count);
+    const users = await Model.find({}).skip(start).limit(Number(count));
+    return res.status(200).json({
+      result: users,
+    });
+  } catch (err) {
+    console.log(err);
+    return res.status(403).json({
+      error: "data get failed",
+    });
+  }
+};
+
 const create = async (Model, req, res, next) => {
   const element = new Model(req.body);
   try {
@@ -18,6 +36,14 @@ const create = async (Model, req, res, next) => {
       error: errorHandler.getErrorMessage(err),
     });
   }
+};
+
+// get all data from db
+const find_All = async (Model, limCount, pageNum) => {
+  const skipCount = (pageNum - 1) * limCount;
+  console.log(skipCount, Model, limCount);
+  let data = await Model.find({}).limit(Number(limCount)).skip(skipCount);
+  return data;
 };
 
 const find_ByID = async (Model, role, id, res) => {
@@ -69,6 +95,8 @@ const updateByID = async (Model, role, id, req, res) => {
 
 export default {
   create,
+  find_All,
   find_ByID,
   updateByID,
+  readByPage,
 };

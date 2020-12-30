@@ -7,15 +7,9 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import multer from "multer";
-// route files
-import authEmployeeRoutes from "./routes/auth/employee.routes";
-import authEmployerRoutes from "./routes/auth/employer.routes";
-import authCommonRoutes from "./routes/auth/common.routes";
-import crudEmployeeRoutes from "./routes/crud/employee.routes";
-import crudEmployerRoutes from "./routes/crud/employer.routes";
-import mailSendRoutes from "./routes/mail/mail.routes";
-import paymentRoutes from "./routes/payment/payment.routes";
-import searchEmployeeRoutes from "./routes/search/search.routes";
+// routes
+import authRoutes from "./routes/auth.routes";
+import empeeRoutes from "./routes/employee.routes";
 
 const CURRENT_WORKING_DIR = process.cwd();
 
@@ -40,22 +34,9 @@ app.use(cors({ origin: "*" }));
 
 app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 
-// mount routes
-// auth routes before signin
-app.use("/api/search", searchEmployeeRoutes);
-app.use("/api/auth/employee", authEmployeeRoutes);
-app.use("/api/auth/employer", authEmployerRoutes);
-app.use("/api/auth/common", authCommonRoutes);
-
-// data organization routes after signin
-app.use("/api/crud/employee", crudEmployeeRoutes);
-app.use("/api/crud/employer", crudEmployerRoutes);
-
-//send mail to employee and employer
-app.use("/api/mail", mailSendRoutes);
-
-//employer pay for interest employee routes
-app.use("/api/payment", paymentRoutes);
+// connect routes
+app.use("/admin/auth", authRoutes);
+app.use("/admin/employee", empeeRoutes);
 
 // Catch unauthorised errors
 app.use((err, req, res, next) => {
