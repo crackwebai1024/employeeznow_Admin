@@ -10,6 +10,7 @@ import multer from "multer";
 // routes
 import authRoutes from "./routes/auth.routes";
 import empeeRoutes from "./routes/employee.routes";
+import emperRoutes from "./routes/employer.routes";
 
 const CURRENT_WORKING_DIR = process.cwd();
 
@@ -37,6 +38,7 @@ app.use("/dist", express.static(path.join(CURRENT_WORKING_DIR, "dist")));
 // connect routes
 app.use("/admin/auth", authRoutes);
 app.use("/admin/employee", empeeRoutes);
+app.use("/admin/employer", emperRoutes);
 
 // Catch unauthorised errors
 app.use((err, req, res, next) => {

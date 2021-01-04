@@ -13,4 +13,13 @@ router
   .route("/search/result")
   .get(requireSignin, hasAuthorization, EmpeeReadCtrl.readEmployeeByPage);
 
+router
+  .route("/getemployee/:id")
+  .get(requireSignin, hasAuthorization, EmpeeReadCtrl.getEmpeeAllDataById);
+
+// get data by statistically
+router
+  .route("/getemployeestats")
+  .get(requireSignin, hasAuthorization, EmpeeReadCtrl.getEmpeeStats);
+
 export default router;
