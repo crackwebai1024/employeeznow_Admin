@@ -10,11 +10,17 @@ const Skill = ({ data }) => {
 
   return (
     <Grid container>
-      <Grid xs={6}>
+      <Grid item xs={6}>
         <Typography className={classes.asdf}>Shift</Typography>
-        {data.shift.map((sh) => {
-          return <Typography>{sh}</Typography>;
+        {data.shift.map((sh, key) => {
+          return <Typography key={key}>{sh}</Typography>;
         })}
+      </Grid>
+      <Grid item xs={6}>
+        <Typography className={classes.asdf}>Style</Typography>
+        {data.style.map((st, key) => (
+          <Typography>{st}</Typography>
+        ))}
       </Grid>
     </Grid>
   );
