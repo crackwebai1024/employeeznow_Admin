@@ -5,11 +5,13 @@ const readByPage = async (Model, req, res) => {
   try {
     console.log("I am here");
     const { page, count } = req.query;
-    const start = (page - 1) * count;
+    const start = page * count;
     console.log(start, count);
+    const totalCount = await Model.count();
     const users = await Model.find({}).skip(start).limit(Number(count));
     return res.status(200).json({
       result: users,
+      totalCount,
     });
   } catch (err) {
     console.log(err);
