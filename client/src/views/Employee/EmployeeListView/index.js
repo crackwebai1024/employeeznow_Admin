@@ -5,7 +5,7 @@ import { actions } from "@redux/employees";
 import Results from "./Results";
 import Toolbar from "./Toolbar";
 import { useDispatch, useSelector } from "react-redux";
-// import data from "./data";
+import Statistic from "./Statistic";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +32,7 @@ const CustomerListView = () => {
   return (
     <Page className={classes.root} title="Customers">
       <Container maxWidth={false}>
+        <Statistic />
         <Toolbar />
         <Box mt={3}>
           <Results customers={employees} />

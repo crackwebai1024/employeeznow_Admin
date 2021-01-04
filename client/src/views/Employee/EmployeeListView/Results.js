@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import {
-  Avatar,
   Box,
+  Avatar,
   Card,
   Table,
   TableBody,
@@ -18,6 +18,7 @@ import {
 } from "@material-ui/core";
 import getInitials from "@helpers/utils/getInitials";
 import { actions } from "@redux/employees";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
@@ -25,12 +26,20 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     marginRight: theme.spacing(2),
   },
+  link: {
+    cursor: "pointer",
+    textDecoration: "none",
+    "&:hover": {
+      color: "green",
+      textDecoration: "underline",
+    },
+  },
 }));
 
 const Results = ({ className, customers, ...rest }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const { page, count } = useSelector((state) => state.employees);
 
   const handleLimitChange = (event) => {
@@ -39,6 +48,11 @@ const Results = ({ className, customers, ...rest }) => {
 
   const handlePageChange = (event, newPage) => {
     dispatch(actions.setPage(newPage));
+  };
+
+  const getEmployeeProfile = (id) => {
+    dispatch(actions.getEmployeeProfile(id));
+    history.push(`/app/employees/${id}`);
   };
 
   return (
@@ -64,9 +78,14 @@ const Results = ({ className, customers, ...rest }) => {
                         className={classes.avatar}
                         src={customer.avatarUrl}
                       >
-                        {getInitials(customer.name)}
+                        {getInitials(customer.lastName)}
                       </Avatar>
-                      <Typography color="textPrimary" variant="body1">
+                      <Typography
+                        color="textPrimary"
+                        className={classes.link}
+                        onClick={(e) => getEmployeeProfile(customer.id)}
+                        variant="body1"
+                      >
                         {customer.firstName} {customer.lastName}
                       </Typography>
                     </Box>

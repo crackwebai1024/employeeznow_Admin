@@ -8,6 +8,11 @@ export const actions = createActions({
 
   SET_COUNT: undefined,
   SET_PAGE: undefined,
+
+  GET_EMPLOYEE_PROFILE: undefined,
+  SET_PROFILE: undefined,
+
+  GET_EMPLOYEE_STA: undefined,
 });
 
 const reducer = handleActions(
@@ -17,6 +22,12 @@ const reducer = handleActions(
 
     [actions.setCount, handlers.setCount],
     [actions.setPage, handlers.setPage],
+
+    [actions.getEmployeeProfile, handlers.getEmployeeProfile],
+    [actions.setProfile, handlers.setProfile],
+
+    [actions.getEmployeeSta, handlers.getEmployeeSta],
+    [actions.getEmployeeStaSuccess, handlers.getEmployeeStaSuccess],
   ]),
   initialState
 );

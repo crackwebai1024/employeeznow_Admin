@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import { Route, Redirect } from "react-router-dom";
 import LoginView from "../views/Auth/LoginView";
-import Employee from "../views/Employee";
+import Employee from "../views/Employee/EmployeeListView";
+import EmployeeProfile from "../views/Employee/Profile";
 import MainLayout from "../layouts/MainLayout";
 import DashboardLayout from "../layouts/DashboardLayout";
 import { getToken } from "@helpers/auth-helpers";
@@ -22,7 +23,12 @@ export default function AppRouter() {
       ) : (
         <Fragment>
           <Route path="/app" component={DashboardLayout}></Route>
-          <Route path="/app/employees" component={Employee}></Route>
+          <Route exact path="/app/employees" component={Employee}></Route>
+          <Route
+            exact
+            path={`/app/employees/:id`}
+            component={EmployeeProfile}
+          ></Route>
           <Route path="*">
             <Redirect to="/app/employees"></Redirect>
           </Route>
