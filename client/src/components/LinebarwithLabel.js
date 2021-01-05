@@ -4,7 +4,7 @@ import { Box, Typography, LinearProgress, makeStyles } from "@material-ui/core";
 const useStyles = makeStyles((theme) => ({
   bar: {
     height: "13px",
-    backgroundColor: "#00800080",
+    backgroundColor: "#00800040",
   },
   container: {
     marginTop: "0.5rem",
