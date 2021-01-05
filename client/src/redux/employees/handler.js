@@ -46,4 +46,22 @@ export const getEmployeeStaSuccess = (state, { payload }) => ({
   employeeStatis: payload,
 });
 
+export const updateJobExperience = (state) => ({
+  ...state,
+});
+
+export const updateJobSuccess = (state, { payload }) => ({
+  ...state,
+  profile: { ...state.profile, experience: payload },
+});
+
+export const updateBasic = (state) => ({
+  ...state,
+});
+
+export const updateBasicSuccess = (state, { payload }) => ({
+  ...state,
+  profile: { ...state.profile, basic: payload },
+});
+
 export default initialState;

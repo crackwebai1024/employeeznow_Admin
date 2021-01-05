@@ -6,12 +6,16 @@ const useStyles = makeStyles((theme) => ({
   flex: {
     display: "flex",
   },
+  container: {
+    background: "white",
+    padding: "1rem",
+  },
 }));
 
 const Preference = ({ data }) => {
   const classes = useStyles();
   return (
-    <Grid container>
+    <Grid container className={classes.container}>
       <Grid item xs={4}>
         <Typography>{data.employmentStatus}</Typography>
       </Grid>

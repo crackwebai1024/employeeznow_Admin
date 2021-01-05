@@ -11,3 +11,11 @@ export async function onGetEmployeesProfile(id) {
 export async function onGetEmployeeSta() {
   return await Axios.get("/employee/getemployeestats");
 }
+
+export async function onUpdateExperience(payload) {
+  return await Axios.post("/employee/workhist", payload);
+}
+
+export async function onUpdateBasic(payload) {
+  return await Axios.post("/employee/basic", payload);
+}

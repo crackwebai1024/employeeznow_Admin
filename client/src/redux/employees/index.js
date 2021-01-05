@@ -13,6 +13,13 @@ export const actions = createActions({
   SET_PROFILE: undefined,
 
   GET_EMPLOYEE_STA: undefined,
+  GET_EMPLOYEE_STA_SUCCESS: undefined,
+
+  UPDATE_JOB_EXPERIENCE: undefined,
+  UPDATE_JOB_SUCCESS: undefined,
+
+  UPDATE_BASIC: undefined,
+  UPDATE_BASIC_SUCCESS: undefined,
 });
 
 const reducer = handleActions(
@@ -28,6 +35,12 @@ const reducer = handleActions(
 
     [actions.getEmployeeSta, handlers.getEmployeeSta],
     [actions.getEmployeeStaSuccess, handlers.getEmployeeStaSuccess],
+
+    [actions.updateJobExperience, handlers.updateJobExperience],
+    [actions.updateJobSuccess, handlers.updateJobSuccess],
+
+    [actions.updateBasic, handlers.updateBasic],
+    [actions.updateBasicSuccess, handlers.updateBasicSuccess],
   ]),
   initialState
 );
