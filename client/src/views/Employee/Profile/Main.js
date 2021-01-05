@@ -23,7 +23,7 @@ const Profile = () => {
               {profile.preference && <Preference data={profile.preference} />}
             </Grid>
             <Grid item xs={12}>
-              {profile.experience && <Experience data={profile.experience} />}
+              <Experience data={profile.experience} />
             </Grid>
             <Grid item xs={12}>
               {profile.skill && <Skill data={profile.skill} />}

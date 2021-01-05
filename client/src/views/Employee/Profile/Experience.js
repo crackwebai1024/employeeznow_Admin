@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "0px",
     padding: "1rem 0px",
     position: "relative",
+    minHeight: "80px",
     background: "white",
   },
   editIcon: {
@@ -60,99 +61,105 @@ const Experience = ({ data }) => {
           <EditIcon />
         </IconButton>
       </Box>
-      <Grid item xs={12} sm={6} md={4}>
-        <Typography className={classes.jobtitle}>
-          {data.primaryJob.title}
-        </Typography>
-        {data.primaryJob && (
-          <Fragment>
-            <Typography className={classes.company}>
-              Company: {data.primaryJob.company}
+      {data && (
+        <Fragment>
+          <Grid item xs={12} sm={6} md={4}>
+            <Typography className={classes.jobtitle}>
+              {data.primaryJob.title}
             </Typography>
-            <Typography className={classes.jobPeriod}>
-              {data.primaryJob.startDate && (
-                <span>
-                  {moment(new Date(data.primaryJob.startDate)).format(
-                    "MM/YYYY"
-                  )}
-                </span>
-              )}
-              {data.primaryJob.current
-                ? "Present"
-                : data.primaryJob.endDate && (
+            {data.primaryJob && (
+              <Fragment>
+                <Typography className={classes.company}>
+                  Company: {data.primaryJob.company}
+                </Typography>
+                <Typography className={classes.jobPeriod}>
+                  {data.primaryJob.startDate && (
                     <span>
-                      &nbsp;~&nbsp;
-                      {moment(new Date(data.primaryJob.endDate)).format(
+                      {moment(new Date(data.primaryJob.startDate)).format(
                         "MM/YYYY"
                       )}
                     </span>
                   )}
-            </Typography>
-            <Typography className={classes.description}>
-              {data.primaryJob.description}
-            </Typography>
-          </Fragment>
-        )}
-      </Grid>
-      {data.secondaryJob.title && (
-        <Grid item xs={12} sm={6} md={4}>
-          <Typography className={classes.jobtitle}>
-            {data.secondaryJob.title}
-          </Typography>
-          {data.secondaryJob && (
-            <Fragment>
-              <Typography className={classes.company}>
-                Company: {data.secondaryJob.company}
-              </Typography>
-              <Typography className={classes.jobPeriod}>
-                {data.secondaryJob.startDate && (
-                  <span>
-                    {moment(new Date(data.secondaryJob.startDate)).format(
-                      "MM/YYYY"
-                    )}
-                  </span>
-                )}
-                {data.secondaryJob.endDate && (
-                  <span>
-                    &nbsp;~&nbsp;
-                    {moment(new Date(data.secondaryJob.endDate)).format(
-                      "MM/YYYY"
-                    )}
-                  </span>
-                )}
-              </Typography>
-              <Typography className={classes.description}>
-                {data.secondaryJob.description}
-              </Typography>
-            </Fragment>
-          )}
-        </Grid>
-      )}
-      {data.otherJob.map(
-        (job, i) =>
-          job.title && (
-            <Grid item xs={12} sm={6} md={4} key={i}>
-              <Typography className={classes.jobtitle}>{job.title}</Typography>
-              <Fragment>
-                <Typography className={classes.company}>
-                  Company: {job.company}
-                </Typography>
-                <Typography className={classes.jobPeriod}>
-                  {job.startDate &&
-                    moment(new Date(job.startDate)).format("MM/YYYY")}
-                  {job.endDate && (
-                    <span>
-                      &nbsp;~ &nbsp;
-                      {moment(new Date(job.endDate)).format("MM/YYYY")}
-                    </span>
-                  )}
+                  {data.primaryJob.current
+                    ? "Present"
+                    : data.primaryJob.endDate && (
+                        <span>
+                          &nbsp;~&nbsp;
+                          {moment(new Date(data.primaryJob.endDate)).format(
+                            "MM/YYYY"
+                          )}
+                        </span>
+                      )}
                 </Typography>
                 <Typography className={classes.description}>
-                  {job.description}
+                  {data.primaryJob.description}
                 </Typography>
               </Fragment>
+            )}
+          </Grid>
+          {data.secondaryJob.title && (
+            <Grid item xs={12} sm={6} md={4}>
+              <Typography className={classes.jobtitle}>
+                {data.secondaryJob.title}
+              </Typography>
+              {data.secondaryJob && (
+                <Fragment>
+                  <Typography className={classes.company}>
+                    Company: {data.secondaryJob.company}
+                  </Typography>
+                  <Typography className={classes.jobPeriod}>
+                    {data.secondaryJob.startDate && (
+                      <span>
+                        {moment(new Date(data.secondaryJob.startDate)).format(
+                          "MM/YYYY"
+                        )}
+                      </span>
+                    )}
+                    {data.secondaryJob.endDate && (
+                      <span>
+                        &nbsp;~&nbsp;
+                        {moment(new Date(data.secondaryJob.endDate)).format(
+                          "MM/YYYY"
+                        )}
+                      </span>
+                    )}
+                  </Typography>
+                  <Typography className={classes.description}>
+                    {data.secondaryJob.description}
+                  </Typography>
+                </Fragment>
+              )}
             </Grid>
-          )
+          )}
+          {data.otherJob.map(
+            (job, i) =>
+              job.title && (
+                <Grid item xs={12} sm={6} md={4} key={i}>
+                  <Typography className={classes.jobtitle}>
+                    {job.title}
+                  </Typography>
+                  <Fragment>
+                    <Typography className={classes.company}>
+                      Company: {job.company}
+                    </Typography>
+                    <Typography className={classes.jobPeriod}>
+                      {job.startDate &&
+                        moment(new Date(job.startDate)).format("MM/YYYY")}
+                      {job.endDate && (
+                        <span>
+                          &nbsp;~ &nbsp;
+                          {moment(new Date(job.endDate)).format("MM/YYYY")}
+                        </span>
+                      )}
+                    </Typography>
+                    <Typography className={classes.description}>
+                      {job.description}
+                    </Typography>
+                  </Fragment>
+                </Grid>
+              )
+          )}
+        </Fragment>
       )}
     </Grid>
   );
