@@ -26,7 +26,24 @@ function* onGetEmployeeSta() {
     const res = yield call(EmployeeAPI.onGetEmployeeSta);
     if (res && res.data) {
       yield put(types.getEmployeeStaSuccess(res.data));
-      debugger;
+    }
+  } catch {}
+}
+
+function* onUpdateExperience({ payload }) {
+  try {
+    const res = yield call(EmployeeAPI.onUpdateExperience, payload);
+    if (res && res.data) {
+      yield put(types.updateJobSuccess(res.data));
+    }
+  } catch {}
+}
+
+function* onUpdateBasic({ payload }) {
+  try {
+    const res = yield call(EmployeeAPI.onUpdateBasic, payload);
+    if (res && res.data) {
+      yield put(types.updateBasicSuccess(res.data));
     }
   } catch {}
 }
@@ -35,6 +52,8 @@ const employeesSagas = [
   takeEvery(types.getEmployees, onGetEmployees),
   takeEvery(types.getEmployeeProfile, onGetEmployeesProfile),
   takeEvery(types.getEmployeeSta, onGetEmployeeSta),
+  takeEvery(types.updateJobExperience, onUpdateExperience),
+  takeEvery(types.updateBasic, onUpdateBasic),
 ];
 
 export default employeesSagas;

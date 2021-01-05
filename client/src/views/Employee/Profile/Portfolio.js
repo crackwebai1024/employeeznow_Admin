@@ -68,6 +68,9 @@ const useStyles = makeStyles((theme) => ({
   section: {
     borderRadius: "0px",
     position: "relative",
+    padding: "0.25rem",
+    border: "none",
+    boxShadow: "none",
   },
   modalImage: {
     width: "100%",
@@ -109,7 +112,7 @@ const Portfolio = ({ data }) => {
         </IconButton>
       </Dialog>
       <Card className={classes.section}>
-        <CardContent>
+        <CardContent className={classes.section}>
           {portfolios && (
             <Grid item container xs={12}>
               {portfolios.map((p, i) => {

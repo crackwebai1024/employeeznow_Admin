@@ -10,7 +10,7 @@ import Portfolio from "./Portfolio";
 
 const Profile = () => {
   const { profile } = useSelector((state) => state.employees);
-
+  console.log(profile, "profile");
   return (
     !_.isEmpty(profile) && (
       <div>
